@@ -7,17 +7,17 @@ function tag(tagName, name, props, children) {
 			{ elem: document.createElement(tagName), props: {}, name: name, children: [], content: null};
 	}
 	for (let prop in props) {
-		//if (Reflect.getOwnPropertyDescriptor(props, prop)) {
+		if (Reflect.getOwnPropertyDescriptor(props, prop)) {
 			if (state.props[prop] != props[prop]) {
 				state.props[prop] = props[prop];
 				state.elem[prop] = props[prop];
 			}
-		//}
+		}
 	}
 	if (typeof(children) == "string") {
 		if (state.content != children) {
 			state.content = children;
-			state.elem.innerHTML = children;
+			state.elem.textContent = children;
 		}
 	} else {
 		for (let child of children) {
